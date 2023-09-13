@@ -8,11 +8,11 @@ Este es el repositorio del Grupo 21, los integrantes son:
 
 ## Wiki
 
-Se puede acceder a la Wiki en el siguiente enlace [enlace][https://gitlab.inf.utfsm.cl/felipe.leon/grupo-21]
+Se puede acceder a la Wiki en el siguiente enlace [https://gitlab.inf.utfsm.cl/felipe.leon/grupo-21]
 
 ## Video 
 
-* Video presentación proyecto H1 [enlace][https://usmcl-my.sharepoint.com/:f:/g/personal/benjamin_lopezf_usm_cl/EiN4gLBUsmJFjlO0jJbkbA0BeMZtTO1ptfJCJWPRcUKODw?e=eANItI]
+* Video presentación proyecto H1 [https://usmcl-my.sharepoint.com/:f:/g/personal/benjamin_lopezf_usm_cl/EiN4gLBUsmJFjlO0jJbkbA0BeMZtTO1ptfJCJWPRcUKODw?e=eANItI]
 
 
 ## Getting started
