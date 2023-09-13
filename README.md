@@ -8,7 +8,7 @@ Este es el repositorio del Grupo 21, los integrantes son:
 
 ## Wiki
 
-Se puede acceder a la Wiki en el siguiente [enlace](https://gitlab.inf.utfsm.cl/felipe.leon/grupo-21)
+Se puede acceder a la Wiki en el siguiente [enlace](https://gitlab.inf.utfsm.cl/felipe.leon/grupo-21/-/wikis/Inicio)
 
 ## Video 
 
