@@ -1,10 +1,12 @@
-# Grupo 21 
+# Grupo 12 
 
-Este es el repositorio del Grupo 21, los integrantes son:
+Este es el repositorio del Grupo 12, los integrantes son:
 
 * Felipe León - 202173598-4 
 * Eduardo Mondaca - 202173506-2
 * Benjamin Lopez - 202173533-k
+
+Tutor: Martín Campos
 
 ## Wiki
 
