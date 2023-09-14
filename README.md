@@ -6,7 +6,7 @@ Este es el repositorio del Grupo 12, los integrantes son:
 * Eduardo Mondaca - 202173506-2
 * Benjamin Lopez - 202173533-k
 
-** Tutor: Martín Campos **
+**Tutor: Martín Campos**
 
 ## Wiki
 
