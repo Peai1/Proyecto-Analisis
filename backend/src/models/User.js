@@ -9,7 +9,16 @@ User.init({
     autoIncrement: true,
     primaryKey: true,
   },
+  // Agrego tipo
+  tipo: {
+    type: Sequelize.DataTypes.ENUM('Cliente', 'Analista Comercial', 'Analista Ventas', 'Supervisor'),
+    allowNull: false // o false si quieres que sea un campo obligatorio
+  },
   nombre: Sequelize.DataTypes.STRING,
+  password: {
+    type: Sequelize.DataTypes.STRING,
+    allowNull: false
+  },
   email: {
     type: Sequelize.DataTypes.STRING,
     unique: true,

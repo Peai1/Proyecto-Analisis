@@ -12,6 +12,7 @@ export default function show() {
 		initialData: [],
 		revalidateOnMount: true,
 	});
+	
 	return (
 		<div className="container">
 			<table className="table">

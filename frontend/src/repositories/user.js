@@ -21,5 +21,9 @@ const getUser = (id) =>
 		.get(`${process.env.REACT_APP_BACKEND_URL}/users/${id}`)
 		.then((res) => res.data);
 
+const login = (email, password) =>
+	axios
+		.post(`${process.env.REACT_APP_BACKEND_URL}/login`, { email, password })
+
 // eslint-disable-nextline
-export { deleteUser, updateUser, createUser, getAllUsers, getUser };
+export { deleteUser, updateUser, createUser, getAllUsers, getUser, login };

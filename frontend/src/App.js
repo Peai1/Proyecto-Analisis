@@ -12,6 +12,8 @@ import UsersEdit from "./views/users/edit";
 import UsersView from "./views/users/show";
 import UserList from "./views/users/index";
 import UserAdd from "./views/users/create";
+import Login from "./views/users/login";
+import SimulacionCredito from "./views/users/creditSimulation";
 
 import Home from "./views/Home";
 
@@ -29,6 +31,12 @@ export default function App() {
 							{/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
 							<Switch>
+								<Route path="/users/login">
+									<Login />
+								</Route>
+								<Route path="/users/creditSimulation">
+									<SimulacionCredito />
+								</Route>
 								<Route path="/users/create">
 									<UserAdd />
 								</Route>

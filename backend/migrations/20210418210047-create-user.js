@@ -14,6 +14,15 @@ module.exports = {
       email: {
         type: Sequelize.STRING
       },
+      // Agregar tipo
+      tipo: {
+        type: Sequelize.ENUM('Cliente', 'Analista Comercial', 'Analista Ventas', 'Supervisor'),
+        allowNull: false // o false si quieres que sea un campo obligatorio
+      },
+      password: { // Agregamos el campo de contraseña
+        type: Sequelize.STRING,
+        allowNull: false
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

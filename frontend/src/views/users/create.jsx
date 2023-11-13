@@ -49,6 +49,42 @@ export default function create() {
 						required
 					/>
 				</div>
+				{/* Agregar password */}
+				<div className="form-group">
+					<label htmlFor="password">Contraseña</label>
+					<input
+						className="form-control"
+						id="password"
+						type="password"
+						value={state.password}
+						onChange={(e) => {
+							setstate({ ...state, password: e.target.value });
+						}}
+						placeholder="Ingrese Contraseña"
+						required
+					/>
+				</div>
+				{/* Agregar tipo de usuario */}
+				<div className="form-group">
+					<label htmlFor="tipo">Tipo de Usuario</label>
+					<select
+						className="form-control"
+						id="tipo"
+						type="tipo"
+						value={state.tipo}
+						onChange={(e) => {
+							setstate({ ...state, tipo: e.target.value });
+						}}
+						placeholder="Seleccione tipo de cuenta"
+						required
+					>
+						<option value="">Seleccionar...</option>
+						<option value="Cliente">Cliente</option>
+						<option value="Analista Comercial">Analista Comercial</option>
+						<option value="Analista Ventas">Analista Ventas</option>
+						<option value="Supervisor">Supervisor</option>
+					</select>
+				</div>
 				<div className="float-right">
 					<button type="submit" className="btn btn-primary">
 						Guardar
