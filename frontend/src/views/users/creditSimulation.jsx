@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link, useHistory } from "react-router-dom";
 
 export default function creditSimulation() {
 
@@ -65,9 +66,11 @@ export default function creditSimulation() {
                     <label>Valor UF Actual: </label>
                     <span>{" " + ufValue}</span>
                 </div>
-                <button type="submit" className="btn btn-primary">
-					Simular
-				</button>
+                <Link to="/users/calculocredito">
+                        <button className="btn btn-info">
+                            Simular
+                        </button>
+                    </Link>
             </form>
         </div>
     );
