@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export default function creditSimulation() {
     const history = useHistory();
 
     const handleSimulation = (e) => {
         e.preventDefault();
-        // Realiza la simulación y luego redirige
-        console.log({ creditValue, paymentMonths, ufValue });
-        history.push(`/users/calculocredito?creditValue=${creditValue}&paymentMonths=${paymentMonths}`);
+        history.push(`/users/calculoCredito?creditValue=${creditValue}&paymentMonths=${paymentMonths}&ufValue=${ufValue}`);
     };
 
     const [creditValue, setCreditValue] = useState('');
@@ -23,7 +21,6 @@ export default function creditSimulation() {
                 const parser = new DOMParser();
                 const xmlDoc = parser.parseFromString(response.data, "text/xml");
 
-                // Aquí asumimos que el XML tiene la estructura que proporcionaste
                 const ufNode = xmlDoc.getElementsByTagName("UF")[0];
                 const valorNode = ufNode.getElementsByTagName("Valor")[0];
                 const valorUf = valorNode.childNodes[0].nodeValue;

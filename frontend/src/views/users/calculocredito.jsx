@@ -1,72 +1,67 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { Link, useHistory } from "react-router-dom";
-import { useLocation } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
-export default function calculocredito() {
-    
-    const location = useLocation();
-    const queryParams = new URLSearchParams(location.search);
-    const creditValue = queryParams.get('creditValue');
-    const paymentMonths = queryParams.get('paymentMonths');
+export default function calculoCredito() {
+	const location = useLocation();
+	const queryParams = new URLSearchParams(location.search);
+	const creditValue = queryParams.get("creditValue");
+	const paymentMonths = queryParams.get("paymentMonths");
+	const ufValue = queryParams.get("ufValue");
 
-    
-    const [ufValue, setUfValue] = useState('');
+	const [cuotaUF, setCuotaUF] = useState(0);
+	const [totalCredito, setTotalCredito] = useState(0);
 
-    useEffect(() => {
-        const fetchUfValue = async () => {
-            try {
-                const response = await axios.get('https://api.sbif.cl/api-sbifv3/recursos_api/uf?apikey=add0087c10d06dbf83f412ef8e1268c68a181c2f');
-                const parser = new DOMParser();
-                const xmlDoc = parser.parseFromString(response.data, "text/xml");
+	useEffect(() => {
+		const calculo = () => {
+			const tasaMensual = 0.01; // Asumiendo un 1% mensual, por ejemplo
+			const cuota =
+				creditValue /
+				((1 - Math.pow(1 + tasaMensual, -paymentMonths)) / tasaMensual);
+			const total = cuota * paymentMonths;
 
-                // Aquí asumimos que el XML tiene la estructura que proporcionaste
-                const ufNode = xmlDoc.getElementsByTagName("UF")[0];
-                const valorNode = ufNode.getElementsByTagName("Valor")[0];
-                const valorUf = valorNode.childNodes[0].nodeValue;
+			setCuotaUF(cuota);
+			setTotalCredito(total);
+		};
 
-                setUfValue(valorUf);
-            } catch (error) {
-                console.error("Error al obtener el valor de la UF", error);
-            }
-        };
+		if (creditValue && paymentMonths) {
+			calculo();
+		}
+	}, [creditValue, paymentMonths]);
 
-        fetchUfValue();
-    }, []);
-
-    return (
-        <div className="container mt-4">
-            <h2>Calculo Credito</h2>
-            <form>
-                
-                <div>
-                    <label>Tasa: </label>
-                    <span>{" " + 1}</span>
-                </div>
-                <div>
-                    <label>Valor UF Actual: </label>
-                    <span>{" " + ufValue}</span>
-                </div>
-                <div>
-                    <label>Plazo: </label>
-                    <span>{" " + paymentMonths}</span>
-                </div>
-                <div>
-                <Link to="/users/creditSimulation">
-                        <button className="btn btn-info">
-                            Realizar otra simulacion
-                        </button>
-                        </Link>
-                </div>
-                <div>
-                <Link to="/users">
-                        <button className="btn btn-info">
-                            Volver a inicio
-                        </button>
-                        </Link>
-                </div>
-            </form>
-        </div>
-    );
+	return (
+		<div className="container mt-4">
+			<h2 className="mb-4">Cálculo de Crédito</h2>
+			<div className="card">
+				<div className="card-body">
+					<h5 className="card-title">Detalles del Crédito</h5>
+					<ul className="list-group list-group-flush">
+						<li className="list-group-item">
+							<strong>Tasa:</strong> {" " + 1}% (Ejemplo)
+						</li>
+						<li className="list-group-item">
+							<strong>Valor UF Actual:</strong> {" " + ufValue}
+						</li>
+						<li className="list-group-item">
+							<strong>Plazo:</strong> {" " + paymentMonths} meses
+						</li>
+						<li className="list-group-item">
+							<strong>Valor Cuota:</strong> {" " + cuotaUF.toFixed(2)} UF
+						</li>
+						<li className="list-group-item">
+							<strong>Total a Pagar:</strong> {" " + totalCredito.toFixed(2)} UF
+						</li>
+					</ul>
+					<div className="card-body">
+						<Link to="/users/creditSimulation" className="btn btn-info mr-2">
+							Realizar otra simulación
+						</Link>
+						<Link to="/users" className="btn btn-secondary">
+							Volver al inicio
+						</Link>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 }
-

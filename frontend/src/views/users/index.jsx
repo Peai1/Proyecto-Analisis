@@ -92,7 +92,7 @@ export default function index() {
 			</Table>
 
 			<div>
-                {userType === "Cliente" && (
+                {isUserLoggedIn() && userType === "Cliente" && (
                     <Link to="/users/creditSimulation">
                         <button className="btn btn-info">
                             Realizar simulación de crédito

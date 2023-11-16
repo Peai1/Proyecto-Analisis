@@ -14,7 +14,7 @@ import UserList from "./views/users/index";
 import UserAdd from "./views/users/create";
 import Login from "./views/users/login";
 import SimulacionCredito from "./views/users/creditSimulation";
-import Calculocredito from "./views/users/calculocredito";
+import CalculoCredito from "./views/users/calculoCredito";
 
 import Home from "./views/Home";
 
@@ -38,8 +38,8 @@ export default function App() {
 								<Route path="/users/creditSimulation">
 									<SimulacionCredito />
 								</Route>
-								<Route path="/users/calculocredito">
-									<Calculocredito />
+								<Route path="/users/calculoCredito">
+									<CalculoCredito />
 								</Route>
 								<Route path="/users/create">
 									<UserAdd />
