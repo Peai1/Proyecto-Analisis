@@ -3,6 +3,14 @@ import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
 
 export default function creditSimulation() {
+    const history = useHistory();
+
+    const handleSimulation = (e) => {
+        e.preventDefault();
+        // Realiza la simulación y luego redirige
+        console.log({ creditValue, paymentMonths, ufValue });
+        history.push('/users/calculocredito?creditValue=${creditValue}&paymentMonthsm=${paymentMonths}');
+    };
 
     const [creditValue, setCreditValue] = useState('');
     const [paymentMonths, setPaymentMonths] = useState('');
@@ -28,12 +36,6 @@ export default function creditSimulation() {
 
         fetchUfValue();
     }, []);
-
-    const handleSimulation = (e) => {
-        e.preventDefault();
-        // Aquí puedes manejar la lógica de la simulación del crédito
-        console.log({ creditValue, paymentMonths, ufValue });
-    };
 
     return (
         <div className="container mt-4">
@@ -66,11 +68,9 @@ export default function creditSimulation() {
                     <label>Valor UF Actual: </label>
                     <span>{" " + ufValue}</span>
                 </div>
-                <Link to="/users/calculocredito">
-                        <button className="btn btn-info">
-                            Simular
-                        </button>
-                    </Link>
+                <button className="btn btn-info" onClick={handleSimulation}>
+                    Simular
+                </button>
             </form>
         </div>
     );

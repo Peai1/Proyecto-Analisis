@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 
 export default function calculocredito() {
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const creditValue = queryParams.get('creditValue');
+    const paymentMonths = queryParams.get('paymentMonths');
 
-    const [creditValue, setCreditValue] = useState('');
-    const [paymentMonths, setPaymentMonths] = useState('');
+    
     const [ufValue, setUfValue] = useState('');
 
     useEffect(() => {
@@ -29,16 +33,10 @@ export default function calculocredito() {
         fetchUfValue();
     }, []);
 
-    const handleSimulation = (e) => {
-        e.preventDefault();
-        // Aquí puedes manejar la lógica de la simulación del crédito
-        console.log({ creditValue, paymentMonths, ufValue });
-    };
-
     return (
         <div className="container mt-4">
             <h2>Calculo Credito</h2>
-            <form onSubmit={handleSimulation}>
+            <form>
                 
                 <div>
                     <label>Tasa: </label>
@@ -50,7 +48,7 @@ export default function calculocredito() {
                 </div>
                 <div>
                     <label>Plazo: </label>
-                    <span>{" " + 1}</span>
+                    <span>{" " + paymentMonths}</span>
                 </div>
                 <div>
                 <Link to="/users/creditSimulation">
