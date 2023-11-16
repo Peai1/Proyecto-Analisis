@@ -9,7 +9,7 @@ export default function creditSimulation() {
         e.preventDefault();
         // Realiza la simulación y luego redirige
         console.log({ creditValue, paymentMonths, ufValue });
-        history.push('/users/calculocredito?creditValue=${creditValue}&paymentMonthsm=${paymentMonths}');
+        history.push(`/users/calculocredito?creditValue=${creditValue}&paymentMonths=${paymentMonths}`);
     };
 
     const [creditValue, setCreditValue] = useState('');

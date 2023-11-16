@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
 
 export default function calculocredito() {
+    
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const creditValue = queryParams.get('creditValue');
