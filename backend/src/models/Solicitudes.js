@@ -1,9 +1,9 @@
 import { Sequelize } from 'sequelize';
 import sequelize from '../database.js';
 
-class Solicitud extends Sequelize.Model {};
+class Solicitudes extends Sequelize.Model {};
 
-Solicitud.init({
+Solicitudes.init({
   id: {
     type: Sequelize.DataTypes.INTEGER,
     autoIncrement: true,
@@ -40,9 +40,10 @@ Solicitud.init({
   },
 }, {
   sequelize,
-  modelName: 'Solicitud', 
+  modelName: 'Solicitud',
+  tableName: 'Solicitudes', // Nombre tabla en BD
   timestamps: true, 
 });
 
 
-export default Solicitud;
+export default Solicitudes;

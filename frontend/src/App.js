@@ -15,6 +15,7 @@ import UserAdd from "./views/users/create";
 import Login from "./views/users/login";
 import SimulacionCredito from "./views/users/creditSimulation";
 import CalculoCredito from "./views/users/calculoCredito";
+import MostrarSolicitudes from "./views/users/mostrarSolicitudes";
 
 import Home from "./views/Home";
 
@@ -34,6 +35,9 @@ export default function App() {
 							<Switch>
 								<Route path="/users/login">
 									<Login />
+								</Route>
+								<Route path="/users/mostrarSolicitudes">
+									<MostrarSolicitudes />
 								</Route>
 								<Route path="/users/creditSimulation">
 									<SimulacionCredito />

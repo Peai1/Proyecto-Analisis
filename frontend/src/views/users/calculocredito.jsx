@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { createSolicitud } from "../../repositories/solicitud";
+import { useHistory } from "react-router-dom";
+import { jwtDecode } from 'jwt-decode';	// npm install jwt-decode
 
 export default function calculoCredito() {
 	const location = useLocation();
@@ -11,6 +14,29 @@ export default function calculoCredito() {
 
 	const [cuotaUF, setCuotaUF] = useState(0);
 	const [totalCredito, setTotalCredito] = useState(0);
+
+	const history = useHistory();
+
+	const handleSolicitarCredito = async (e) => {
+        e.preventDefault();
+
+		const token = localStorage.getItem("token"); // O sessionStorage
+		const decoded = jwtDecode(token);
+		const userId = decoded.userId;
+
+		console.log(userId);
+
+		const solicitudData = {
+			id_usuario: userId,
+			monto_solicitado: creditValue,
+			plazo: paymentMonths,
+			cuota_uf: cuotaUF,
+			total: totalCredito
+		};
+
+		const response = await createSolicitud(solicitudData);
+		history.push(`/users/${response.data.id_usuario}`); // Asegúrate de que esta ruta es correcta
+    };
 
 	useEffect(() => {
 		const calculo = () => {
@@ -56,7 +82,14 @@ export default function calculoCredito() {
 						<Link to="/users/creditSimulation" className="btn btn-info mr-2">
 							Realizar otra simulación
 						</Link>
-						<Link to="/users" className="btn btn-secondary">
+						<Link
+							to="#"
+							onClick={handleSolicitarCredito}
+							className="btn btn-primary mr-2"
+						>
+							Solicitar crédito
+						</Link>
+						<Link to="/users" className="btn btn-secondary mr-2">
 							Volver al inicio
 						</Link>
 					</div>

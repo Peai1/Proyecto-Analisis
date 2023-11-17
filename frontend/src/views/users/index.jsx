@@ -99,6 +99,13 @@ export default function index() {
                         </button>
                     </Link>
                 )}
+				{isUserLoggedIn() && userType === "Analista Ventas" && (
+                    <Link to="/users/mostrarSolicitudes">
+                        <button className="btn btn-info">
+                            Visualizar Solicitudes de Crédito
+                        </button>
+                    </Link>
+                )}
                 {/* Aquí puedes agregar más condiciones para otros tipos de usuario */}
             </div>
 
