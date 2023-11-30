@@ -7,11 +7,11 @@ export default function Header() {
 
     return (
        <Navbar bg="dark" variant="dark" className="d-flex justify-content-center">
-            <Navbar.Brand href="#home">
+            <Navbar.Brand href="/">
             <div className='d-flex justify-content-center'>Financiera La Clave</div>
         
             </Navbar.Brand>
-            <div className="text-white d-flex justify-content-end"> Bienvenido {nombre}</div>
+            <div className="text-white d-flex justify-content-end"> Bienvenido</div>
         </Navbar>
     )
 }

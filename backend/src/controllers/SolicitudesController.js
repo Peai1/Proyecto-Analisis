@@ -7,32 +7,49 @@ export default class SolicitudController {
 		const solicitudes = await Solicitud.findAll();
 		res.send(solicitudes);
 	}
-
-    // Obtiene solicitudes del id del usuario
-    async getByUserId(req, res) {
-		const solicitudes = await Solicitud.findAll({
-			where: {
-				id_usuario: req.params.id_usuario
-			}
-		});
-		res.send(solicitudes);
-	}
     
 	// Guardar solicitud en BD
 	async create(req, res) {
-		const { id_usuario, monto_solicitado, plazo, cuota_uf, total } = req.body;
+		const { idUsuario, montoSolicitado, plazo, cuotaUF, totalUF, cuotaCLP, totalCLP } = req.body;
 		const nuevaSolicitud = await Solicitud.create({
-			id_usuario: id_usuario,
-			monto_solicitado: monto_solicitado,
+			idUsuario: idUsuario,
+			montoSolicitado: montoSolicitado,
 			plazo: plazo,
-			cuota_uf: cuota_uf,
-			total: total,
-			estado_solicitud: 'Pendiente',
+			cuotaUF: cuotaUF,
+			totalUF: totalUF,
+			cuotaCLP: cuotaCLP,
+			totalCLP: totalCLP,
+			estadoSolicitud: 'Pendiente',
 		});
 		res.send(nuevaSolicitud);
     }
 
+	async getByUserId(req, res) {
+		const solicitud = await Solicitud.findByPk(req.params.solicitudId);
+		res.send(solicitud);
+	}
 
+	async updateIngresado(req, res) {
+		const solicitud = await Solicitud.findByPk(req.params.solicitudId);	  
+		const estadoSolicitud = 'Ingresado';	  
+		solicitud.update({ estadoSolicitud: estadoSolicitud });
+		res.send(solicitud);
+	}
+
+	async updateDerivado(req, res) {
+		const idSolicitud  = req.params.solicitudId;
+		const { nombreSupervisor } = req.body;
+		console.log("ID: " + idSolicitud + " Supervisor: " + nombreSupervisor);
+		const solicitud = await Solicitud.findByPk(idSolicitud);	  
+		const estadoSolicitud = 'Derivada';	  
+		solicitud.update({ estadoSolicitud: estadoSolicitud, supervisorAsignado: nombreSupervisor});
+		res.send(solicitud);
+	}
+
+	async delete(req, res) {
+		await Solicitud.destroy({where: {id: req.params.solicitudId}});
+		res.send({status: "ok"});
+	}
 
 };
 

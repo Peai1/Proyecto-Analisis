@@ -18,8 +18,8 @@ export default function index() {
 
 	// Funcion para ver el tipo de usuario
 	const getUserType = () => {
-        return localStorage.getItem("userType");
-    };
+		return localStorage.getItem("userType");
+	};
 
 	// Funcion para ver si existe el token de inicio de sesion
 	const isUserLoggedIn = () => {
@@ -29,9 +29,9 @@ export default function index() {
 
 	// Funcion para cerrar sesion
 	const handleLogout = () => {
-        localStorage.removeItem("token"); // Borra el token
+		localStorage.removeItem("token"); // Borra el token
 		history.push("/");
-    };
+	};
 
 	const tbody = [];
 
@@ -48,7 +48,10 @@ export default function index() {
 						</a>
 					</Link>
 					<Link to={`users/${id}/edit`}>
-						<a href={`users/${id}/edit`} className="ml-2 btn btn-primary">
+						<a
+							href={`users/${id}/edit`}
+							className="ml-2 btn btn-primary"
+						>
 							Editar
 						</a>
 					</Link>
@@ -73,11 +76,14 @@ export default function index() {
 					</Link>
 				)}
 				{isUserLoggedIn() && (
-                    <button onClick={handleLogout} className="ml-4 btn btn-danger">
-                        Cerrar Sesión
-                    </button>
-                )}
-			</div>	
+					<button
+						onClick={handleLogout}
+						className="ml-4 btn btn-danger"
+					>
+						Cerrar Sesión
+					</button>
+				)}
+			</div>
 
 			<Table striped bordered hover>
 				<thead>
@@ -91,24 +97,64 @@ export default function index() {
 				<tbody>{tbody}</tbody>
 			</Table>
 
-			<div>
-                {isUserLoggedIn() && userType === "Cliente" && (
-                    <Link to="/users/creditSimulation">
-                        <button className="btn btn-info">
-                            Realizar simulación de crédito
-                        </button>
-                    </Link>
-                )}
+			<div style={{ textAlign: "center", marginRight: "350px", marginTop: "25px" }}>
+				{isUserLoggedIn() && userType === "Cliente" && (
+					<div>
+						<h3>Clientes</h3>
+						<p>
+							Realiza una simulación de tu crédito de manera
+							rápida y fácil.
+						</p>
+						<Link to="/cliente/creditSimulation">
+							<button className="btn btn-primary btn-lg">
+								Simulación de Crédito
+							</button>
+						</Link>
+					</div>
+				)}
 				{isUserLoggedIn() && userType === "Analista Ventas" && (
-                    <Link to="/users/mostrarSolicitudes">
-                        <button className="btn btn-info">
-                            Visualizar Solicitudes de Crédito
-                        </button>
-                    </Link>
-                )}
-                {/* Aquí puedes agregar más condiciones para otros tipos de usuario */}
-            </div>
-
+					<div>
+						<h3>Analista de Ventas</h3>
+						<p>
+							Revisa y gestiona las solicitudes de crédito
+							pendientes.
+						</p>
+						<Link to="/ventas/mostrarSolicitudes">
+							<button className="btn btn-success btn-lg">
+								Visualizar Solicitudes
+							</button>
+						</Link>
+					</div>
+				)}
+				{isUserLoggedIn() && userType === "Analista Comercial" && (
+					<div>
+						<h3>Analista Comercial</h3>
+						<p>
+							Consulta las solicitudes ingresadas en el área
+							comercial.
+						</p>
+						<Link to="/comercial/solicitudesAreaComercial">
+							<button className="btn btn-warning btn-lg">
+								Ver Solicitudes Ingresadas
+							</button>
+						</Link>
+					</div>
+				)}
+				{isUserLoggedIn() && userType === "Supervisor" && (
+					<div>
+						<h3>Supervisor</h3>
+						<p>
+							Supervisa todas las solicitudes de créditos
+							presentadas.
+						</p>
+						<Link to="/supervisor/solicitudes">
+							<button className="btn btn-danger btn-lg">
+								Supervisar Solicitudes
+							</button>
+						</Link>
+					</div>
+				)}
+			</div>
 		</Container>
 	);
 }

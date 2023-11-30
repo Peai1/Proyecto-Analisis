@@ -13,9 +13,14 @@ import UsersView from "./views/users/show";
 import UserList from "./views/users/index";
 import UserAdd from "./views/users/create";
 import Login from "./views/users/login";
-import SimulacionCredito from "./views/users/creditSimulation";
-import CalculoCredito from "./views/users/calculoCredito";
-import MostrarSolicitudes from "./views/users/mostrarSolicitudes";
+import SimulacionCredito from "./views/cliente/creditSimulation";
+import CalculoCredito from "./views/cliente/calculoCredito";
+import MostrarSolicitudes from "./views/ventas/mostrarSolicitudes";
+import VerSolicitudVentas from "./views/ventas/verSolicitud";
+import SolicitudesComercial from "./views/comercial/solicitudesAreaComercial";
+import VerSolicitudComercial from "./views/comercial/verSolicitud";
+import SimulacionVentas from "./views/ventas/simulacionAreaVentas";
+import CalculoCreditoVentas from "./views/ventas/calculoCredito";
 
 import Home from "./views/Home";
 
@@ -36,13 +41,28 @@ export default function App() {
 								<Route path="/users/login">
 									<Login />
 								</Route>
-								<Route path="/users/mostrarSolicitudes">
+								<Route path="/ventas/calculoCredito">
+									<CalculoCreditoVentas />
+								</Route>
+								<Route path="/ventas/simulacionAreaVentas">
+									<SimulacionVentas />
+								</Route>
+								<Route path="/comercial/solicitudesAreaComercial/:id">
+									<VerSolicitudComercial />
+								</Route>
+								<Route path="/comercial/solicitudesAreaComercial">
+									<SolicitudesComercial />
+								</Route>
+								<Route path="/ventas/mostrarSolicitudes/:id">
+									<VerSolicitudVentas />
+								</Route>
+								<Route path="/ventas/mostrarSolicitudes">
 									<MostrarSolicitudes />
 								</Route>
-								<Route path="/users/creditSimulation">
+								<Route path="/cliente/creditSimulation">
 									<SimulacionCredito />
 								</Route>
-								<Route path="/users/calculoCredito">
+								<Route path="/cliente/calculoCredito">
 									<CalculoCredito />
 								</Route>
 								<Route path="/users/create">

@@ -64,6 +64,18 @@ export default class UserController {
 		await User.destroy({where: {id: req.params.userId}});
 		res.send({status: "ok"});
 	}
+
+	async getByTipo(req, res) {
+
+		const users = await User.findAll({
+			where: {
+				tipo: req.params.tipo,
+			}
+		});
+
+		res.send(users);
+	}
+
 };
 
 

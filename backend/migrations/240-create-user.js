@@ -17,9 +17,9 @@ module.exports = {
       // Agregar tipo
       tipo: {
         type: Sequelize.ENUM('Cliente', 'Analista Comercial', 'Analista Ventas', 'Supervisor'),
-        allowNull: false // o false si quieres que sea un campo obligatorio
+        allowNull: false 
       },
-      password: { // Agregamos el campo de contraseña
+      password: { 
         type: Sequelize.STRING,
         allowNull: false
       },

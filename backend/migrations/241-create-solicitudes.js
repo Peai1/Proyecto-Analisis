@@ -9,7 +9,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id_usuario: {
+      idUsuario: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Users', // Nombre de la tabla de usuarios
@@ -18,27 +18,38 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL'
       },
-      monto_solicitado: {
-        type: Sequelize.DECIMAL(10, 2),
+      montoSolicitado: {
+        type: Sequelize.DECIMAL(20, 2),
         allowNull: false
       },
       plazo: {
         type: Sequelize.INTEGER,
         allowNull: false
       },
-      cuota_uf: {
-        type: Sequelize.DECIMAL(10, 2),
+      cuotaUF: {
+        type: Sequelize.DECIMAL(20, 2),
         allowNull: false
       },
-      total: {
-        type: Sequelize.DECIMAL(10, 2),
+      totalUF: {
+        type: Sequelize.DECIMAL(20, 2),
         allowNull: false
       },
-      estado_solicitud: {
-        type: Sequelize.ENUM,
-        values: ['Aprobado', 'Rechazado', 'Pendiente'],
+      cuotaCLP: {
+        type: Sequelize.DECIMAL(20, 2),
+        allowNull: false
+      },
+      totalCLP: {
+        type: Sequelize.DECIMAL(20, 2),
+        allowNull: false
+      },
+      estadoSolicitud: {
+        type: Sequelize.STRING,
         defaultValue: 'Pendiente', // Opcional, establece un valor por defecto
         allowNull: false
+      },
+      supervisorAsignado:{
+        type: Sequelize.STRING,
+        allowNull: true,
       },
       createdAt: {
         allowNull: false,

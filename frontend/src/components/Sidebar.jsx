@@ -10,8 +10,7 @@ export default function Sidebar() {
     return (
         <Navbar className="bg-light" >
             <Nav defaultActiveKey="/" className="flex-column sidebar-sticky">
-                <Link to="/"><Nav.Link href="/">Inicio</Nav.Link></Link>
-                <Link to="/users"><Nav.Link href="/users">Usuarios</Nav.Link></Link>
+                <Link to="/users"><Nav.Link href="/users">Inicio</Nav.Link></Link>
             </Nav>
         </Navbar>
         )

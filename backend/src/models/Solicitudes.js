@@ -9,34 +9,46 @@ Solicitudes.init({
     autoIncrement: true,
     primaryKey: true,
   },
-  id_usuario: {
+  idUsuario: {
     type: Sequelize.DataTypes.INTEGER,
     allowNull: false,
     references: {
-      model: 'User', 
+      model: 'Users', 
       key: 'id',
     },
   },
-  monto_solicitado: {
-    type: Sequelize.DataTypes.DECIMAL(10, 2), 
+  montoSolicitado: {
+    type: Sequelize.DataTypes.DECIMAL(20, 2), 
     allowNull: false
   },
   plazo: {
     type: Sequelize.DataTypes.INTEGER,
     allowNull: false
   },
-  cuota_uf: {
-    type: Sequelize.DataTypes.DECIMAL(10, 2), 
+  cuotaUF: {
+    type: Sequelize.DataTypes.DECIMAL(20, 2), 
     allowNull: false
   },
-  total: {
-    type: Sequelize.DataTypes.DECIMAL(10, 2), 
+  totalUF: {
+    type: Sequelize.DataTypes.DECIMAL(20, 2), 
     allowNull: false
   },
-  estado_solicitud: { 
-    type: Sequelize.DataTypes.ENUM('Aprobado', 'Rechazado', 'Pendiente'),
+  cuotaCLP: {
+    type: Sequelize.DataTypes.DECIMAL(20, 2), 
+    allowNull: false
+  },
+  totalCLP: {
+    type: Sequelize.DataTypes.DECIMAL(20, 2), 
+    allowNull: false
+  },
+  estadoSolicitud: { 
+    type: Sequelize.DataTypes.STRING,
     defaultValue: 'Pendiente',
     allowNull: false
+  },
+  supervisorAsignado:{
+    type: Sequelize.STRING,
+    allowNull: true,
   },
 }, {
   sequelize,

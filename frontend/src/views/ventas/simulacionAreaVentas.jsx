@@ -1,18 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 
-export default function creditSimulation() {
+export default function SimulacionAreaVentas() {
     const history = useHistory();
+    const location = useLocation();
+    const params = new URLSearchParams(location.search);
+
+    const creditoInicial = parseFloat(params.get("credito"));
+    const plazoInicial = parseInt(params.get("plazo"));
+    const idSolicitud = params.get("id");
+
+    console.log("ID SOLICITUD:" + idSolicitud);;
+
+    const [credito, setCredito] = useState(creditoInicial);
+    const [plazo, setPlazo] = useState(plazoInicial);
+    const [ufValue, setUfValue] = useState('');
 
     const handleSimulation = (e) => {
         e.preventDefault();
-        history.push(`/users/calculoCredito?creditValue=${creditValue}&paymentMonths=${paymentMonths}&ufValue=${ufValue}`);
+        history.push(`/ventas/calculoCredito?creditValue=${credito}&paymentMonths=${plazo}&ufValue=${ufValue}&id=${idSolicitud}`);
     };
-
-    const [creditValue, setCreditValue] = useState('');
-    const [paymentMonths, setPaymentMonths] = useState('');
-    const [ufValue, setUfValue] = useState('');
 
     useEffect(() => {
         const fetchUfValue = async () => {
@@ -40,36 +48,37 @@ export default function creditSimulation() {
             <form onSubmit={handleSimulation}>
                 <div className="form-group">
                     <label htmlFor="valor">Valor del crédito</label>
-                    <input 
-                        type="number" 
+                    <input
+                        type="number"
                         className="form-control"
                         id="valor"
-                        value={creditValue} 
-                        onChange={(e) => setCreditValue(e.target.value)}
+                        value={credito}
+                        onChange={(e) => setCredito(parseFloat(e.target.value))}
                         required
                     />
                 </div>
 
                 <div className="form-group">
                     <label htmlFor="plazo">Cantidad de meses en que desea pagar:</label>
-                    <input 
-                        type="number" 
+                    <input
+                        type="number"
                         className="form-control"
                         id="plazo"
-                        value={paymentMonths} 
-                        onChange={(e) => setPaymentMonths(e.target.value)}
+                        value={plazo}
+                        onChange={(e) => setPlazo(parseInt(e.target.value))}
                         required
                     />
                 </div>
+
                 <div>
                     <label>Valor UF Actual: </label>
                     <span>{" " + ufValue}</span>
                 </div>
-                <button className="btn btn-info" onClick={handleSimulation}>
-                    Simular
+
+                <button type="submit" className="btn btn-info">
+                    Realizar Simulación
                 </button>
             </form>
         </div>
     );
 }
-
